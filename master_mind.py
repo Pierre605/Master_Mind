@@ -2,8 +2,11 @@ from tkinter import OFF
 from colorist import Color, Effect, BrightColor, BgBrightColor, blue, red, green, yellow, white, black, magenta
 import random
 import time
+from ascii import title
 
 pions_combi = ['b', 'r', 'v', 'j', 'm']
+
+print(title)
 
 def master_mind():
 
@@ -45,9 +48,9 @@ def master_mind():
 	printed_combi = []
 
 	print('''\nVous devez trouver une combinaison de 4 couleurs dans le bon ordre.\n\nLes couleurs possibles sont Bleu('b'), Rouge('r'), Vert('v'), Jaune('j') et Mauve('m').\n\nUne fois votre combinaison entrée, le jeu vous indique par un point blanc que vous avez la bonne couleur mais pas à la bonne place,\npar un point noir que vous avez la bonne couleur à la bonne place et par une croix rouge que vous n'avez pas la bonne couleur.''')
-	# for c in combi_to_find:
-	# 	printed_combi.append(text_to_emo(c))
-	# 	print(text_to_emo(c), end=' ')
+	for c in combi_to_find:
+		printed_combi.append(text_to_emo(c))
+		# print(text_to_emo(c), end=' ')
 
 	table = []
     
@@ -102,7 +105,6 @@ def master_mind():
 					return "AU REVOIR..."
 					
 			elif checking_res == ['N', 'N', 'N', 'N']:
-				# if checking_res == ['N', 'N', 'N', 'N']:
 				print("\n\nLa combinaison était bien" + '  ' + (' ').join(printed_combi))				
 				print(f"\n\n🏅 {Effect.BLINK}{BrightColor.WHITE}GAGNE ! \o/{BrightColor.OFF}{Effect.BLINK_OFF} 😎\n")
 				input_play_again = input("Une autre partie ? Entrez 'o' oui, 'n' non :  ")
