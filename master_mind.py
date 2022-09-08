@@ -4,7 +4,6 @@ import random
 import time
 
 pions_combi = ['b', 'r', 'v', 'j', 'm']
-pions_indic = ['blanc', 'noir']
 
 def master_mind():
 
@@ -43,12 +42,14 @@ def master_mind():
 
 
 	combi_to_find = generate_combi()
+	printed_combi = []
 
 	print('''\nVous devez trouver une combinaison de 4 couleurs dans le bon ordre.\n\nLes couleurs possibles sont Bleu('b'), Rouge('r'), Vert('v'), Jaune('j') et Mauve('m').\n\nUne fois votre combinaison entrée, le jeu vous indique par un point blanc que vous avez la bonne couleur mais pas à la bonne place,\npar un point noir que vous avez la bonne couleur à la bonne place et par une croix rouge que vous n'avez pas la bonne couleur.''')
-	for c in combi_to_find:
-		print(text_to_emo(c), end=' ')
-	table = []
+	# for c in combi_to_find:
+	# 	printed_combi.append(text_to_emo(c))
+	# 	print(text_to_emo(c), end=' ')
 
+	table = []
     
 	def game():
 		def combi_proposal():
@@ -91,9 +92,9 @@ def master_mind():
 
 		while True:
 			if len(table) > 5 and checking_res != ['N', 'N', 'N', 'N']:
+				print("\n\nPERDU :(\n")
 				print("\n\nLa combinaison était:\n")
 				[(time.sleep(1), print(text_to_emo(c))) for c in combi_to_find]
-				print("\n\nPERDU :(\n")
 				input_play_again = input("Une autre partie ? Entrez 'o' oui, 'n' non :  ")
 				if input_play_again == 'o':
 					return(master_mind())
@@ -102,8 +103,7 @@ def master_mind():
 					
 			elif checking_res == ['N', 'N', 'N', 'N']:
 				# if checking_res == ['N', 'N', 'N', 'N']:
-				print("\n\nLa combinaison était bien\n")
-				[(print(text_to_emo(c), end=' ')) for c in combi_to_find]
+				print("\n\nLa combinaison était bien" + '  ' + (' ').join(printed_combi))				
 				print(f"\n\n🏅 {Effect.BLINK}{BrightColor.WHITE}GAGNE ! \o/{BrightColor.OFF}{Effect.BLINK_OFF} 😎\n")
 				input_play_again = input("Une autre partie ? Entrez 'o' oui, 'n' non :  ")
 				if input_play_again == 'o':
