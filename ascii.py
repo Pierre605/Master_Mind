@@ -1,11 +1,13 @@
+from colorist import Color, Effect, BrightColor, BgBrightColor, blue, red, green, yellow, white, black, magenta
 
 
-title = '''
+title = f'''
 🟣 🟡   ███    ███  █████  ███████ ████████ ███████ ██████      ███    ███ ██ ███    ██ ██████  
 🔴 🟢   ████  ████ ██   ██ ██         ██    ██      ██   ██     ████  ████ ██ ████   ██ ██   ██ 
 🔵 ⚪   ██ ████ ██ ███████ ███████    ██    █████   ██████      ██ ████ ██ ██ ██ ██  ██ ██   ██ 
         ██  ██  ██ ██   ██      ██    ██    ██      ██   ██     ██  ██  ██ ██ ██  ██ ██ ██   ██ 
         ██      ██ ██   ██ ███████    ██    ███████ ██   ██     ██      ██ ██ ██   ████ ██████    
+                                                                                                {Color.BLUE}\x1B[3mpar Pierre LUCIANI\x1B[0m{Color.OFF}
 '''
 
 bye = ''' 
