@@ -1,4 +1,3 @@
-from tkinter import OFF
 from colorist import Color, Effect, BrightColor, BgBrightColor, blue, red, green, yellow, white, black, magenta
 import random
 import time
@@ -8,7 +7,8 @@ pions_combi = ['b', 'r', 'v', 'j', 'm']
 
 print(title)
 print('\n')
-print('''\nVous devez trouver une combinaison de 4 couleurs dans le bon ordre.\n\nLes couleurs possibles sont Bleu('b'), Rouge('r'), Vert('v'), Jaune('j') et Mauve('m').\n\nUne fois votre combinaison entrée, le jeu vous indique par un point blanc que vous avez la bonne couleur mais pas à la bonne place,\npar un point noir que vous avez la bonne couleur à la bonne place et par une croix rouge que vous n'avez pas la bonne couleur.''')
+print(f'''\nVous devez trouver une combinaison de 4 couleurs dans le bon ordre.\n\nLes couleurs possibles sont {BrightColor.BLUE}Bleu{BrightColor.OFF}('b'), {BrightColor.RED}Rouge{BrightColor.OFF}('r'), {BrightColor.GREEN}Vert{BrightColor.OFF}('v'), {Color.YELLOW}Jaune{Color.OFF}('j') et {Color.MAGENTA}Mauve{Color.OFF}('m').\n\nUne fois votre combinaison entrée, le jeu vous indique par un point blanc que vous avez la bonne couleur mais pas à la bonne place,\npar un point noir que vous avez la bonne couleur à la bonne place et par une croix rouge que vous n'avez pas la bonne couleur.''')
+print('\n')
 
 
 def text_to_emo(char):
@@ -61,16 +61,18 @@ def game(combi_to_find, table):
 	def combi_proposal():
 		combi = []
 		while True:
-			input_combi = input("\nEntrez une couleur non déja choisie parmi 'b', 'r', 'v', 'j' ou 'm':  ")
+			input_combi = input("Entrez une couleur non déja choisie parmi 'b', 'r', 'v', 'j' ou 'm':  ")
 			if input_combi in pions_combi and input_combi not in combi:
+				print('\n')
 				combi.append(input_combi)
 				[(print(text_to_emo(c), end=' ')) for c in combi]
+				print('\n')
 				if len(combi) == 4:
-					print('\n')
+					print('\n'*27)
 					break
 			else:
-				print("Saisissez une lettre comme indiqué")
-				[(print(text_to_emo(c), end=' ')) for c in combi]
+				red("\nSaisissez une lettre comme indiqué")
+				# [(print(text_to_emo(c), end=' ')) for c in combi]
 		return combi
 
 
