@@ -9,5 +9,6 @@ Projet personnel de développement du jeu Master Mind en langage Python, à lanc
 Exemples:
 
 ![minesweeper grid 15*15, 35 bombs](screen/master_mind_screen1.png)
-
 ![minesweeper grid 25*25, 450 bombs](screen/master_mind_screen2.png)
+
+![minesweeper grid 25*25, 450 bombs](screen/master_mind_screen3.png)
