@@ -1,7 +1,7 @@
 from colorist import Color, Effect, BrightColor, BgBrightColor, blue, red, green, yellow, white, black, magenta
 import random
 import time
-from ascii import title
+from ascii import title, bye
 
 pions_combi = ['b', 'r', 'v', 'j', 'm']
 
@@ -72,7 +72,7 @@ def game(combi_to_find, table):
 					break
 			else:
 				red("\nSaisissez une lettre comme indiqué")
-				# [(print(text_to_emo(c), end=' ')) for c in combi]
+
 		return combi
 
 
@@ -107,23 +107,21 @@ def game(combi_to_find, table):
 			[(time.sleep(1), print(text_to_emo(c))) for c in combi_to_find]
 			input_play_again = input("Une autre partie ? Entrez 'o' oui, 'n' non :  ")
 			if input_play_again == 'o':
-				print(game(combi_to_find= generate_combi()[0], table=generate_combi()[1]))
+				return game(combi_to_find= generate_combi()[0], table=generate_combi()[1])
 			else:
-				return "AU REVOIR ..."
+				return (bye)
 				
 		elif len(table) <= 6 and checking_res == ['N', 'N', 'N', 'N']:
 			print("\n\nLa combinaison était bien" + '  ' + (' ').join(printed_combi))				
 			print(f"\n\n🏅 {Effect.BLINK}{BrightColor.WHITE}GAGNE ! \o/{BrightColor.OFF}{Effect.BLINK_OFF} 😎\n")
 			input_play_again = input("Une autre partie ? Entrez 'o' oui, 'n' non :  ")
 			if input_play_again == 'o':
-				print(game(combi_to_find= generate_combi()[0], table=generate_combi()[1]))
+				return game(combi_to_find= generate_combi()[0], table=generate_combi()[1])
 			else:
-				return "AU REVOIR ..."
+				return bye
 
 		elif len(table) < 6 and checking_res != ['N', 'N', 'N', 'N']:
 			return(game(combi_to_find, table))
-	
-		return ''
 
 
 print(game(generate_combi()[0], generate_combi()[1]))
