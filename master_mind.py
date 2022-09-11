@@ -1,7 +1,9 @@
 from colorist import Color, Effect, BrightColor, BgBrightColor, blue, red, green, yellow, white, black, magenta
 import random
 import time
-from ascii import title, bye
+from ascii import title, bye, perdu
+from datetime import date
+import os
 
 pions_combi = ['b', 'r', 'v', 'j', 'm']
 
@@ -47,6 +49,8 @@ def generate_combi():
 
 combi_to_find = generate_combi()[0]
 table = generate_combi()[1]
+score_V = []
+
     
 def game(combi_to_find, table):
 
@@ -100,24 +104,116 @@ def game(combi_to_find, table):
 	
 	print('\n')
 
+	def game_longest_win_serie(score_V):
+		stg_score_V = ('').join(score_V)
+		stg_score_V = 'S' + stg_score_V
+		indexes_S = []
+		V_series = []
+		len_series = []
+		
+		# print("score_v :", score_V)
+		for x in range(len(stg_score_V)):
+			if stg_score_V[x] == 'S':
+				indexes_S.append(x)
+		indexes_S.append(None)
+
+		for x in range(len(indexes_S)-1):
+			V_series.append(stg_score_V[indexes_S[x]:indexes_S[x+1]])
+		for serie in V_series:
+			if 'V' in serie:
+				len_series.append(len(serie))
+		if len_series:
+			result = max(len_series)-1
+		else:
+			result = None
+		return result
+
+	def save_game_max_win_series(score):
+		jour = date.today().strftime("%d/%m/%y")
+		with open('MM-max-win-series.txt', 'a') as f:
+			f.write(str([jour, score])+'\n')
+			f.close()
+
+	def display_5_best_series():
+		clean_scores = {}
+		scores = open("MM-max-win-series.txt", "r")
+		scores_r = scores.readlines()
+		if scores_r:
+			for x in range(len(scores_r)):
+				if x != len(scores_r):
+					if not clean_scores.get(scores_r[x][2:10]):
+						clean_scores[scores_r[x][2:10]] = []
+					if scores_r[x][-3] != 'e':
+						clean_scores[scores_r[x][2:10]].append(int(scores_r[x][-3]))
+
+			clean_scores = dict(sorted(clean_scores.items()))
+			
+			licht = []
+			ordered_scores = []
+			for k, v in clean_scores.items():
+				for n in v:
+					licht.append([str(n) + ' ' + k])
+			licht = sorted(licht, reverse=True)
+			for l in licht:
+				ordered_scores.append(l[0].split())
+			
+			best_5_series = []
+			for x in range(len(ordered_scores)):
+				if x == 5:
+					break
+				best_5_series.append(ordered_scores[x][1] + '  ' + ordered_scores[x][0])
+			return best_5_series
+		else:
+			return None
+
 	while True:
 		if len(table) >= 6 and checking_res != ['N', 'N', 'N', 'N']:
-			print("\n\nPERDU :(\n")
+			score_V.append('S')
+			max_win_serie = game_longest_win_serie(score_V=score_V)
+			print(perdu)
 			print("\n\nLa combinaison était:\n")
 			[(time.sleep(1), print(text_to_emo(c))) for c in combi_to_find]
 			input_play_again = input("Une autre partie ? Entrez 'o' oui, 'n' non :  ")
 			if input_play_again == 'o':
+				print('\n')
 				return game(combi_to_find= generate_combi()[0], table=generate_combi()[1])
 			else:
-				return (bye)
+				print('\n')
+				save_game_max_win_series(max_win_serie)
+				print("Série de victoires la plus longue:", max_win_serie)
+				print('\n')
+				input_display_best_scores = input("Afficher les meilleurs scores réalisés ? 'o' oui, 'n' non :  ")
+				if input_display_best_scores == 'o':
+					print('\n')
+					best_5_series = display_5_best_series()
+					for s in best_5_series:
+						print(s)
+				else:
+					return bye				
+				return bye
 				
 		elif len(table) <= 6 and checking_res == ['N', 'N', 'N', 'N']:
+			score_V.append('V')
+			max_win_serie = game_longest_win_serie(score_V=score_V)
 			print("\n\nLa combinaison était bien" + '  ' + (' ').join(printed_combi))				
 			print(f"\n\n🏅 {Effect.BLINK}{BrightColor.WHITE}GAGNE ! \o/{BrightColor.OFF}{Effect.BLINK_OFF} 😎\n")
 			input_play_again = input("Une autre partie ? Entrez 'o' oui, 'n' non :  ")
 			if input_play_again == 'o':
-				return game(combi_to_find= generate_combi()[0], table=generate_combi()[1])
+				print('\n')
+				return game(combi_to_find= generate_combi()[0], table=generate_combi()[1])		
 			else:
+				print('\n')
+				save_game_max_win_series(max_win_serie)
+				print("Série de victoires la plus longue sur cette partie:", max_win_serie)
+				print('\n')
+				input_display_best_scores = input("Afficher les meilleurs scores réalisés ? 'o' oui, 'n' non :  ")
+				if input_display_best_scores == 'o':
+					print('\n')
+					best_5_series = display_5_best_series()
+					for s in best_5_series:
+						print(s)
+				else:
+					return bye
 				return bye
 
 		elif len(table) < 6 and checking_res != ['N', 'N', 'N', 'N']:

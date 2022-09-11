@@ -15,3 +15,11 @@ bye = '''
  / /\  | | |         | |_) | |_  \ \  / / / \ | | | |_) 
 /_/--\ \_\_/         |_| \ |_|__  \_\/  \_\_/ |_| |_| \   ⚪ ⚪ ⚪
 '''
+
+perdu = f'''
+  {Color.GREEN} ___  _______  ___  __  __   ||{Color.OFF}
+ {Color.GREEN} / _ \/ __/ _ \/ _ \/ / / /   ||{Color.OFF}
+ {BrightColor.GREEN}/ ___/ _// , _/ // / /_/ /    ||{BrightColor.OFF}
+{BrightColor.GREEN}/_/  /___/_/|_/____/\____/{BrightColor.OFF}     
+                               😟
+'''
