@@ -137,31 +137,33 @@ def game(combi_to_find, table):
 	def display_5_best_series():
 		clean_scores = {}
 		scores = open("MM-max-win-series.txt", "r")
-		scores_r = scores.readlines()
-		if scores_r:
+		scores_raw = scores.readlines()
+		scores_r = []
+		if scores_raw:
+			for x in range(len(scores_raw)):
+				scores_r.append(scores_raw[x][0:-1])
+				scores_r[x] = scores_r[x].strip("['']").split("', ")
+
 			for x in range(len(scores_r)):
-				if x != len(scores_r):
-					if not clean_scores.get(scores_r[x][2:10]):
-						clean_scores[scores_r[x][2:10]] = []
-					if scores_r[x][-3] != 'e':
-						clean_scores[scores_r[x][2:10]].append(int(scores_r[x][-3]))
+				if not clean_scores.get(scores_r[x][0]):
+					clean_scores[scores_r[x][0]] = []
+			for x in range(len(scores_r)):
+				if scores_r[x][1] != 'None':
+					clean_scores[scores_r[x][0]].append(scores_r[x][1])
 
 			clean_scores = dict(sorted(clean_scores.items()))
-			
-			licht = []
+
 			ordered_scores = []
 			for k, v in clean_scores.items():
 				for n in v:
-					licht.append([str(n) + ' ' + k])
-			licht = sorted(licht, reverse=True)
-			for l in licht:
-				ordered_scores.append(l[0].split())
+					ordered_scores.append([int(n), k])
+			ordered_scores = sorted(ordered_scores, reverse=True)
 			
 			best_5_series = []
 			for x in range(len(ordered_scores)):
 				if x == 5:
 					break
-				best_5_series.append(ordered_scores[x][1] + '  ' + ordered_scores[x][0])
+				best_5_series.append(ordered_scores[x][1] + '  ' + str(ordered_scores[x][0]))
 			return best_5_series
 		else:
 			return None
