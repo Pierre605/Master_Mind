@@ -182,7 +182,7 @@ def game(combi_to_find, table):
 			else:
 				print('\n')
 				save_game_max_win_series(max_win_serie)
-				print("Série de victoires la plus longue:", max_win_serie)
+				print("Série de victoires la plus longue dans cette partie:", max_win_serie)
 				print('\n')
 				input_display_best_scores = input("Afficher les meilleurs scores réalisés ? 'o' oui, 'n' non :  ")
 				if input_display_best_scores == 'o':
@@ -206,7 +206,7 @@ def game(combi_to_find, table):
 			else:
 				print('\n')
 				save_game_max_win_series(max_win_serie)
-				print("Série de victoires la plus longue sur cette partie:", max_win_serie)
+				print("Série de victoires la plus longue dans cette partie:", max_win_serie)
 				print('\n')
 				input_display_best_scores = input("Afficher les meilleurs scores réalisés ? 'o' oui, 'n' non :  ")
 				if input_display_best_scores == 'o':
