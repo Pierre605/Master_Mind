@@ -172,6 +172,7 @@ def game(combi_to_find, table):
 		if len(table) >= 6 and checking_res != ['N', 'N', 'N', 'N']:
 			score_V.append('S')
 			max_win_serie = game_longest_win_serie(score_V=score_V)
+			
 			print(perdu)
 			print("\n\nLa combinaison était:\n")
 			[(time.sleep(1), print(text_to_emo(c))) for c in combi_to_find]
@@ -184,6 +185,7 @@ def game(combi_to_find, table):
 				return game(combi_to_find= generate_combi()[0], table=generate_combi()[1])
 			else:
 				print('\n')
+				save_game_max_win_series(max_win_serie)
 				input_display_best_scores = input("Afficher les meilleurs scores réalisés ? 'o' oui, 'n' non :  ")
 				if input_display_best_scores == 'o':
 					print('\n')
@@ -197,6 +199,7 @@ def game(combi_to_find, table):
 		elif len(table) <= 6 and checking_res == ['N', 'N', 'N', 'N']:
 			score_V.append('V')
 			max_win_serie = game_longest_win_serie(score_V=score_V)
+			
 			print("\n\nLa combinaison était bien" + '  ' + (' ').join(printed_combi))				
 			print(f"\n\n🏅 {Effect.BLINK}{BrightColor.WHITE}GAGNE ! \o/{BrightColor.OFF}{Effect.BLINK_OFF} 😎\n")
 			print('\n')
@@ -207,8 +210,8 @@ def game(combi_to_find, table):
 				print('\n')
 				return game(combi_to_find= generate_combi()[0], table=generate_combi()[1])		
 			else:
-				
-				
+				print('\n')
+				save_game_max_win_series(max_win_serie)
 				input_display_best_scores = input("Afficher les meilleurs scores réalisés ? 'o' oui, 'n' non :  ")
 				if input_display_best_scores == 'o':
 					print('\n')
