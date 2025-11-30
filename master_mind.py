@@ -200,8 +200,9 @@ def game(combi_to_find, table):
 			score_V.append('V')
 			max_win_serie = game_longest_win_serie(score_V=score_V)
 			
-			print("\n\nLa combinaison était bien" + '  ' + (' ').join(printed_combi))				
-			print(f"\n\n🏅 {Effect.BLINK}{BrightColor.WHITE}GAGNE ! \o/{BrightColor.OFF}{Effect.BLINK_OFF} 😎\n")
+			print("\n\nLa combinaison était bien" + '  ' + (' ').join(printed_combi))
+			print('\n')
+			print(rf"🏅 {Effect.BLINK}{BrightColor.WHITE}GAGNE ! \o/{BrightColor.OFF}{Effect.BLINK_OFF} 😎")
 			print('\n')
 			print("Série de victoires la plus longue dans cette partie:", max_win_serie)
 			print('\n')

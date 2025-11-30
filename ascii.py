@@ -1,22 +1,22 @@
 from colorist import Color, Effect, BrightColor, BgBrightColor, blue, red, green, yellow, white, black, magenta
 
 
-title = f'''
+title = rf'''
 🟣 🟡   ███    ███  █████  ███████ ████████ ███████ ██████      ███    ███ ██ ███    ██ ██████  
 🔴 🟢   ████  ████ ██   ██ ██         ██    ██      ██   ██     ████  ████ ██ ████   ██ ██   ██ 
 🔵 ⚪   ██ ████ ██ ███████ ███████    ██    █████   ██████      ██ ████ ██ ██ ██ ██  ██ ██   ██ 
         ██  ██  ██ ██   ██      ██    ██    ██      ██   ██     ██  ██  ██ ██ ██  ██ ██ ██   ██ 
         ██      ██ ██   ██ ███████    ██    ███████ ██   ██     ██      ██ ██ ██   ████ ██████    
-                                                                                                {Color.BLUE}\x1B[3mpar Pierre LUCIANI\x1B[0m{Color.OFF}
+                                                                                                {Color.BLUE}Pierre605{Color.OFF}
 '''
 
-bye = ''' 
+bye = r''' 
   __    _             ___   ____  _      ___   _   ___  
  / /\  | | |         | |_) | |_  \ \  / / / \ | | | |_) 
 /_/--\ \_\_/         |_| \ |_|__  \_\/  \_\_/ |_| |_| \   ⚪ ⚪ ⚪
 '''
 
-perdu = f'''
+perdu = rf'''
   {Color.GREEN} ___  _______  ___  __  __   ||{Color.OFF}
  {Color.GREEN} / _ \/ __/ _ \/ _ \/ / / /   ||{Color.OFF}
  {BrightColor.GREEN}/ ___/ _// , _/ // / /_/ /    ||{BrightColor.OFF}
